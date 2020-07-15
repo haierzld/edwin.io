@@ -1,0 +1,240 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python3.7 -- 学习应用--舒尔特方格（注意力表格） | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/haierzld/favicon.ico?v=1594784928393">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/haierzld/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python3.7 -- 学习应用--舒尔特方格（注意力表格） | Gridea - Atom Feed" href="https://github.com/haierzld/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="# 从2*2到9*9
+#引入随机函数
+import random
+
+#注意力测试需要生成多少行
+rowx = int((input('请输入一个1到9的数字:')))
+lowy =rowx
+
+#排序后数列
+list=[]
+#原随机数数列
+l..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com/haierzld">
+  <img class="avatar" src="https://github.com/haierzld/images/avatar.png?v=1594784928393" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python3.7 -- 学习应用--舒尔特方格（注意力表格）
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-15
+              </span>
+              <span>
+                2 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <pre><code class="language-python"># 从2*2到9*9
+#引入随机函数
+import random
+
+#注意力测试需要生成多少行
+rowx = int((input('请输入一个1到9的数字:')))
+lowy =rowx
+
+#排序后数列
+list=[]
+#原随机数数列
+list2 = []
+#每次的随机数
+str1 =''
+
+for i in range(1,rowx*rowx+1):
+        str1= str(random.randint(1,rowx*rowx*10000))
+        list.append(str1)
+        list2.append(str1)
+
+#print('list:{0}',list)
+#将随机数进行排序
+list.sort()
+#print(len(list))
+#print('list after sort:{0}',list)
+#print('list2:',list2)
+
+n1 = 0
+print('第一种方法：')
+#for是从1开始，所有下标需要加1
+for i in range(1,len(list)+1):
+    n1 =list2.index(list[i-1])+1
+    #不足三位使用空格补，这样有利格式对奇
+    print('{0: ^3}'.format(n1),end=' ')
+    #换行使用的
+    if (i % rowx== 0):
+        print('\n')
+
+print('第二种方法：')
+
+for i in range(1,rowx+1):
+    j=1
+    for j in range(1,lowy+1):
+        r1 =i*rowx-(rowx-j)
+        n1 = list[r1-1]
+        rx=list2.index(n1)+1
+        print('{0: ^3}'.format(rx),end=&quot; &quot;)
+    print('\n')
+
+#以下是运行结果
+'''
+第一种方法：
+ 8   7  10   3  12
+
+17  16  18   5   2
+
+23  19  14  15   6
+
+ 1   4  13  22  25
+
+24   9  20  11  21
+
+第二种方法：
+ 8   7  10   3  12
+
+17  16  18   5   2
+
+23  19  14  15   6
+
+ 1   4  13  22  25
+
+24   9  20  11  21  
+'''
+</code></pre>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/haierzld/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
