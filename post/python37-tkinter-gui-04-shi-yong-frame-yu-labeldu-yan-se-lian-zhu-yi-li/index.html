@@ -1,0 +1,230 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Python3.7 - tkinter Gui 04 使用Frame与Label，读颜色练注意力 | Gridea</title>
+<link rel="shortcut icon" href="https://github.com/haierzld/favicon.ico?v=1594782727926">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.3.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://github.com/haierzld/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python3.7 - tkinter Gui 04 使用Frame与Label，读颜色练注意力 | Gridea - Atom Feed" href="https://github.com/haierzld/atom.xml">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700">
+
+
+
+    <meta name="description" content="使用Frame与Label，读颜色练注意力
+1、使用TK的两个控件Frame,Label；
+2、随机函数random.randint
+3、自定义函数，获得颜色；
+4、UI控件格式，pack，默认是top，所有需要传入参数为left；
+5、小..." />
+    <meta name="keywords" content="" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+    <script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+  </head>
+  <body>
+    <div class="main">
+      <div class="main-content">
+        <div class="site-header">
+  <a href="https://github.com/haierzld">
+  <img class="avatar" src="https://github.com/haierzld/images/avatar.png?v=1594782727926" alt="">
+  </a>
+  <h1 class="site-title">
+    Gridea
+  </h1>
+  <p class="site-description">
+    温故而知新
+  </p>
+  <div class="menu-container">
+    
+      
+        <a href="/" class="menu">
+          首页
+        </a>
+      
+    
+      
+        <a href="/archives" class="menu">
+          归档
+        </a>
+      
+    
+      
+        <a href="/tags" class="menu">
+          标签
+        </a>
+      
+    
+      
+        <a href="/post/about" class="menu">
+          关于
+        </a>
+      
+    
+  </div>
+  <div class="social-container">
+    
+      
+    
+      
+    
+      
+    
+      
+    
+      
+    
+  </div>
+</div>
+
+        <div class="post-detail">
+          <article class="post">
+            <h2 class="post-title">
+              Python3.7 - tkinter Gui 04 使用Frame与Label，读颜色练注意力
+            </h2>
+            <div class="post-info">
+              <span>
+                2020-07-15
+              </span>
+              <span>
+                3 min read
+              </span>
+              
+            </div>
+            
+            <div class="post-content-wrapper">
+              <div class="post-content">
+                <p>使用Frame与Label，读颜色练注意力<br>
+1、使用TK的两个控件Frame,Label；<br>
+2、随机函数random.randint<br>
+3、自定义函数，获得颜色；<br>
+4、UI控件格式，pack，默认是top，所有需要传入参数为left；<br>
+5、小技巧，就是排版我使用了frame当作容器，每一行用一个Frame；然后在Frame上面使用left格式增加label；<br>
+6、复习了for循环；</p>
+<p>小结，如果这个代码段学会，对于GUI 的操作应该都掌握，有需要查文档就可以。</p>
+<p>备注：这个是生成10行7个不同颜色字，然后需要是读颜色而不是看字念。<br>
+这个每天练习五遍，坚持21天，可以有效提升注意力。</p>
+<p>帮人帮到底，我生成十张随机颜色表，有需要自己拷贝走，给小朋友练习；</p>
+<!-- more -->
+<pre><code class="language-python">from  tkinter  import *
+import random
+
+
+class  Application(Frame):
+    &quot;&quot;&quot;一个经典的GUI程序类的写法&quot;&quot;&quot;
+    def __init__(self,master=None):
+        super().__init__(master)  # super()代表的是父类的定义 ，而不是父类的对像
+        self.master = master
+        self.pack()
+        self.createWidget()
+
+
+    def createWidget(self):
+
+        def romcolor():
+            colorlist	=	['white','red','green',&quot;yellow&quot;,&quot;blue&quot;,&quot;gray&quot;,&quot;purple&quot;,&quot;orange&quot;,&quot;pink&quot;]
+            return  colorlist[random.randint(0,8)]
+
+        def romcolortext():
+            colorlistText	=	['白','红','绿',&quot;黄&quot;,&quot;蓝&quot;,&quot;灰&quot;,&quot;紫&quot;,&quot;橙&quot;,&quot;粉&quot;]
+            return  colorlistText[random.randint(0,8)]
+
+
+        def createlabel(sidelab,i,j,f01):
+            fontsize = 25
+            fontname = &quot;宋体&quot;
+            label01 = Label(f01,text=romcolortext(),width=3,height=2,fg=romcolor(),bg=&quot;black&quot;,font=(fontname,fontsize))
+            print(label01[&quot;text&quot;]+label01[&quot;fg&quot;])
+            label01.pack(side=sidelab)
+
+        for i in range(10):
+            f01 = Frame(self)
+            f01.pack()
+            for j in range(7):
+                createlabel(&quot;left&quot;,i,j,f01)
+                print('i is ',i)
+                print('j is ',j)
+
+
+if __name__=='__main__':
+    root = Tk()
+    root.geometry(&quot;600x800+300+200&quot;)
+    root.title(&quot;一个经典的注意力测试小游戏--读颜色练注意力&quot;)
+    app = Application(master=root)
+    root.mainloop()
+
+</code></pre>
+<figure data-type="image" tabindex="1"><img src="https://github.com/haierzld/post-images/1594782690602.webp" alt="" loading="lazy"></figure>
+
+              </div>
+              <div class="toc-container">
+                
+              </div>
+            </div>
+          </article>
+        </div>
+
+        
+          <div class="next-post">
+            <div class="next">下一篇</div>
+            <a href="https://github.com/haierzld/post/hello-gridea/">
+              <h3 class="post-title">
+                Hello Gridea
+              </h3>
+            </a>
+          </div>
+        
+
+        
+
+        <div class="site-footer">
+  Powered by <a href="https://github.com/getgridea/gridea" target="_blank">Gridea</a>
+  <a class="rss" href="https://github.com/haierzld/atom.xml" target="_blank">
+    <i class="ri-rss-line"></i> RSS
+  </a>
+</div>
+
+      </div>
+    </div>
+
+    <script>
+      hljs.initHighlightingOnLoad()
+
+      let mainNavLinks = document.querySelectorAll(".markdownIt-TOC a");
+
+      // This should probably be throttled.
+      // Especially because it triggers during smooth scrolling.
+      // https://lodash.com/docs/4.17.10#throttle
+      // You could do like...
+      // window.addEventListener("scroll", () => {
+      //    _.throttle(doThatStuff, 100);
+      // });
+      // Only not doing it here to keep this Pen dependency-free.
+
+      window.addEventListener("scroll", event => {
+        let fromTop = window.scrollY;
+
+        mainNavLinks.forEach((link, index) => {
+          let section = document.getElementById(decodeURI(link.hash).substring(1));
+          let nextSection = null
+          if (mainNavLinks[index + 1]) {
+            nextSection = document.getElementById(decodeURI(mainNavLinks[index + 1].hash).substring(1));
+          }
+          if (section.offsetTop <= fromTop) {
+            if (nextSection) {
+              if (nextSection.offsetTop > fromTop) {
+                link.classList.add("current");
+              } else {
+                link.classList.remove("current");    
+              }
+            } else {
+              link.classList.add("current");
+            }
+          } else {
+            link.classList.remove("current");
+          }
+        });
+      });
+
+    </script>
+  </body>
+</html>
